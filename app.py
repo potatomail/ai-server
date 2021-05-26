@@ -1,3 +1,4 @@
+import json
 from functools import wraps
 from flask import Flask, request, Response, abort
 
@@ -33,7 +34,7 @@ def test():
                 pass
 
 
-    return Response(response='ok', status=200, mimetype="application/json")
+    return Response(response=json.dumps({'result': 'ok'}), status=200, mimetype="application/json")
 
 
 # start flask app
