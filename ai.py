@@ -4,22 +4,6 @@ cnn_id = keras.models.load_model('./models/cnn_id.h5')
 cnn_driver = keras.models.load_model('./models/cnn_driver.h5')
 cnn_student = keras.models.load_model('./models/cnn_student.h5')
 
-models = [cnn_id, cnn_driver, cnn_student]
-models = {
-    {
-        'name': 'id',
-        'model': cnn_id,
-    },
-    {
-        'name': 'driver',
-        'model': cnn_driver,
-    },
-    {
-        'name': 'student',
-        'model': cnn_student,
-    }
-}
-
 class ImageDecodeException(Exception):
     pass
 
@@ -54,5 +38,4 @@ def security_check(data, models):
 class ImageClassifier:
     def classify(self, image: object):
         # classify image as something
-
-class ImageDe
+        pass
