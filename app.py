@@ -19,6 +19,7 @@ def check_token(f):
 # route http posts to this method
 # 이미지가 아닌 다른 값이 들어올 경우 예외처리
 @app.route('/api/test', methods=['POST'])
+@check_token
 def test():
     print(request.files)
     images = request.files.get('images', None)
