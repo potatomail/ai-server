@@ -1,11 +1,22 @@
+from functools import wraps
 from flask import Flask, request, Response
 import jsonpickle
 import numpy as np
 import cv2
 import keras
 
+from config import *
+
 # Initialize the Flask application
 app = Flask(__name__)
+
+def check_token(f):
+    @wraps(f)
+    def check_authorization(*args, **kwargs):
+        if request.headers.get('X-Api-Key', None) == AUTH_TOKEN:
+            return f(*args, **kwargs)
+        return Response('Unknown token', 401)
+    return check_authorization
 
 cnn_id = keras.models.load_model('./models/cnn_id.h5')
 cnn_driver = keras.models.load_model('./models/cnn_driver.h5')
