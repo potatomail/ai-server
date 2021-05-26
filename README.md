@@ -6,7 +6,15 @@ cd .venv
 ```
 
 # Running server
+```shell
+python -m app
+```
+
+or
+
+```shell
 python app.py
+```
 
 # Dockerize & test
 ```shell
