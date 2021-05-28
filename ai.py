@@ -1,8 +1,10 @@
-import keras
-
+import keras, cv2
+import numpy as np
+'''
 cnn_id = keras.models.load_model('./models/cnn_id.h5')
 cnn_driver = keras.models.load_model('./models/cnn_driver.h5')
 cnn_student = keras.models.load_model('./models/cnn_student.h5')
+'''
 
 class ImageDecodeException(Exception):
     pass
