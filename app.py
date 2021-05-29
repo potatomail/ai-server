@@ -4,6 +4,8 @@ from flask import Flask, request, Response, abort
 
 from config import *
 from classifiers.factory import generate_factory
+from ai import decoding
+
 
 # Initialize the Flask application
 app = Flask(__name__)
@@ -24,17 +26,23 @@ def check_token(f):
 def test():
     print(request.files)
     images = request.files.get('images', None)
+    print(images)
     if images is None:
         abort(400, 'Image field not found.')
-    for image in images:
-        for model_name in SUPPORTED_MODELS:
-            model = generate_factory(model_name)
-            print(image)
-            if model.predict(image):
-                pass
+    image = decoding(images.read())
+    print(image)
+    #for image in images:
+        #print(image)
+    for model_name in SUPPORTED_MODELS:
+        model = generate_factory(model_name)
+            #print(model)
+            #print(image)
+        print(model)
+        if model.predict(image):
+            return Response(response=json.dumps({'result': 1}), status=200, mimetype="application/json")
 
 
-    return Response(response=json.dumps({'result': 'ok'}), status=200, mimetype="application/json")
+    return Response(response=json.dumps({'result': 0}), status=200, mimetype="application/json")
 
 
 # start flask app
