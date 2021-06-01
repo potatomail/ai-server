@@ -35,4 +35,4 @@ client = AIServerBackend('localhost', 'TEST_TOKEN', 5000)
 images = {
     'test.jpg': open('test.jpg', 'rb').read()
 }
-client.test(images)
+print(client.test(images))
