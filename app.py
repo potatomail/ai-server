@@ -26,11 +26,11 @@ def check_token(f):
 def test():
     print(request.files)
     images = request.files.get('images', None)
-    print(images)
+    #print(images)
     if images is None:
         abort(400, 'Image field not found.')
     image = decoding(images.read())
-    print(image)
+    #print(image)
     #for image in images:
         #print(image)
     for model_name in SUPPORTED_MODELS:
